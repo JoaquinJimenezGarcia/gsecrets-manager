@@ -3,10 +3,10 @@ from google.cloud import secretmanager
 
 def create_secret():
     # GCP project in which to store secrets in Secret Manager.
-    project_id = "jjgdevelopment-399314"
+    project_id = f"{project_id}"
 
     # ID of the secret to create.
-    secret_id = "test-secret"
+    secret_id = f"{secret_id}"
 
     # Create the Secret Manager client.
     client = secretmanager.SecretManagerServiceClient()
@@ -62,7 +62,7 @@ def list_secret_versions():
 
     # Initialize request argument(s)
     request = secretmanager.ListSecretVersionsRequest(
-        parent="projects/874147184475/secrets/test-secret",
+        parent=f"projects/{project_id_number}/secrets/f{secret_id}",
     )
 
     # Make the request
@@ -86,7 +86,7 @@ def add_secret_version():
 
     # Make the request
     response = client.add_secret_version(
-        request={"parent": "projects/874147184475/secrets/test-secret", "payload": {"data": b"created automatically"}}
+        request={"parent": f"projects/{project_id_number}/secrets/f{secret_id}", "payload": {"data": b"created automatically"}}
     )
 
     # Handle the response
